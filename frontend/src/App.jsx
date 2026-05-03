@@ -70,9 +70,20 @@ function App() {
               className={`submit-btn ${loading ? 'loading' : ''}`}
               disabled={loading || !inputText.trim()}
             >
-              {loading ? <span className="spinner"></span> : 'Analyze'}
+              {loading ? (
+                <>
+                  <span className="spinner"></span> 
+                  <span style={{marginLeft: '10px'}}>Analyzing...</span>
+                </>
+              ) : 'Analyze'}
             </button>
           </form>
+
+          {loading && (
+            <div className="fade-in" style={{textAlign: 'center', marginTop: '-0.5rem', color: 'var(--text-muted)', fontSize: '0.85rem'}}>
+              <p>Warming up the AI engine. This may take up to 50 seconds on the free tier.</p>
+            </div>
+          )}
 
           {error && (
             <div className="error-message fade-in">
